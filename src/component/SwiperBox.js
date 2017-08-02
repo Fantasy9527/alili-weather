@@ -15,7 +15,9 @@ import {
 } from "nachos-ui";
 var {height, width} = Dimensions.get("window");
 
-export default function SwiperBox() {
+export default function SwiperBox(props) {
+    let {daily} = props;
+    daily.shift();
     let dot = <View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />
     let activeDot = <View style={{backgroundColor: '#c64b44', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />    
         return <Swiper
@@ -32,38 +34,44 @@ export default function SwiperBox() {
                 flexDirection: 'row'
             }
         ]}>
-            <View style={{flex: 1}}>
-            <Text style={style.weaterText}>明天</Text>
+        {daily.slice(0,3).map((daily,i)=>{
+            if(i==0){
+                daily.week="明天"
+            }else if(i==1){
+                daily.week="后天"
+            }
+            return <View style={{flex: 1}} key={i}>
+            <Text style={style.weaterText}>{daily.week}</Text>
                 <Ionicons
                     name="ios-sunny"
                     style={style.weaterIcons}></Ionicons>
-                <Text style={style.weaterText}>19℃ ~ 31℃</Text>
+                <Text style={style.weaterText}>{daily.day.temphigh}℃</Text>
             </View>
-            <View style={{
-                flex: 1
-            }}>
-             <Text style={style.weaterText}>明天</Text>
+        }
+        )}
+        </View>
+
+       <View
+            style={[
+            style.slide, {
+                flexDirection: 'row'
+            }
+        ]}>
+        {daily.slice(3,6).map((daily,i)=>
+        <View style={{flex: 1}} key={i}>
+            <Text style={style.weaterText}>{daily.week}</Text>
                 <Ionicons
                     name="ios-sunny"
                     style={style.weaterIcons}></Ionicons>
-                <Text style={style.weaterText}>2</Text>
+                <Text style={style.weaterText}>{daily.day.temphigh}℃</Text>
             </View>
-            <View style={{
-                flex: 1
-            }}>
-             <Text  style={style.weaterText}>明天</Text>
-                <Ionicons
-                    name="ios-sunny"
-                    style={style.weaterIcons}></Ionicons>
-                <Text style={style.weaterText}>3</Text>
-            </View>
+            )}
+            
+          
 
         </View>
-        <View style={[style.slide, style.slide2]}>
-            <Ionicons
-                name="ios-sunny"
-                style={style.icons}></Ionicons>
-        </View>
+
+
     </Swiper>
 }
 

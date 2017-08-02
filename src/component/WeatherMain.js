@@ -6,12 +6,14 @@ import { Ionicons } from '@expo/vector-icons';
 import Dimensions from "Dimensions";
 var { height, width } = Dimensions.get("window");
 
-export default function WeatherMain(){
+export default function WeatherMain(props){
+    console.log(props);
+    let {templow,temphigh,temp} = props;
     return <View style={style.weatherBox}>
     <View style={{ height: 20 }} />
     <View style={{ flex: 1 }}>
         <Text style={{ textAlign: "center", color: "#fff", fontSize: 45 }}>
-            14℃
+            {temp}℃
         </Text>
         <Text
             style={{
@@ -21,7 +23,7 @@ export default function WeatherMain(){
                 color: "#f99e67"
             }}
         >
-            15° ~ 30°
+            {templow}℃ ~ {temphigh}℃
         </Text>
         <Ionicons name="ios-sunny" size={130} color="#fff" style={{ textAlign: "center" }}></Ionicons>
         <View />
