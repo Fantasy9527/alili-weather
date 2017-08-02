@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TabButtonBox from "./src/component/TabButtonBox";
 import SwiperBox from "./src/component/SwiperBox";
 import WeatherMain from "./src/component/WeatherMain";
-
+import weatherIcon from './src/data/weatherIcon';
 moment.locale("zh-cn");
 
 var { height, width } = Dimensions.get("window");
@@ -32,6 +32,7 @@ constructor(){
               temphigh: data.temphigh,
               templow: data.templow,
               temp:data.temp,
+              img:data.img,
               data:data
 
             })
@@ -43,13 +44,13 @@ constructor(){
     let {data} = this.state;
     return <View style={{ flex: 1 }}>
         <ScrollView style={{  flex: 1,backgroundColor:"#f5e7cc" }}>
-          <WeatherMain {...this.state}></WeatherMain>
+          <WeatherMain {...this.state} weatherIcon={weatherIcon}></WeatherMain>
           <View style={{height:10}}>
             <Text style={{color:"#c64b44",textAlign:"center",marginTop:45,lineHeight:22}}>{(data||{city:null}).city}</Text>
             <Text style={{color:"#a6a48f",textAlign:"center",lineHeight:22}}>{moment((data||{updatetime:''}).updatetime).format("MM/DD dddd h:mm")}</Text>
             <Text style={{color:"#a6a48f",textAlign:"center",fontSize:10,lineHeight:20}}>空气质量:{(data||{aqi:"优"}).aqi.quality}</Text>
           </View>
-            <SwiperBox daily={(data||{daily:[]}).daily}></SwiperBox>
+            <SwiperBox daily={(data||{daily:[]}).daily} weatherIcon={weatherIcon}></SwiperBox>
         </ScrollView>
         {/* <TabButtonBox /> */}
       </View>;

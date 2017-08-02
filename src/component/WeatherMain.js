@@ -8,7 +8,7 @@ var { height, width } = Dimensions.get("window");
 
 export default function WeatherMain(props){
     console.log(props);
-    let {templow,temphigh,temp} = props;
+    let {templow,temphigh,temp,img,weatherIcon} = props;
     return <View style={style.weatherBox}>
     <View style={{ height: 20 }} />
     <View style={{ flex: 1 }}>
@@ -25,7 +25,7 @@ export default function WeatherMain(props){
         >
             {templow}℃ ~ {temphigh}℃
         </Text>
-        <Ionicons name="ios-sunny" size={130} color="#fff" style={{ textAlign: "center" }}></Ionicons>
+        <Ionicons name={weatherIcon[img]} size={130} color="#fff" style={{ textAlign: "center" }}></Ionicons>
         <View />
     </View>
 </View>

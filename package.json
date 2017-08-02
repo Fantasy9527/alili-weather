@@ -19,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/vector-icons": "^5.0.0",
     "expo": "^19.0.0",
     "moment": "^2.18.1",
     "nachos-ui": "^0.1.2",

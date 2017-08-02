@@ -13,10 +13,12 @@ import {
     B,
     Progress
 } from "nachos-ui";
-var {height, width} = Dimensions.get("window");
+
+
+var {height, width,} = Dimensions.get("window");
 
 export default function SwiperBox(props) {
-    let {daily} = props;
+    let {daily,weatherIcon} = props;
     daily.shift();
     let dot = <View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />
     let activeDot = <View style={{backgroundColor: '#c64b44', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />    
@@ -43,7 +45,7 @@ export default function SwiperBox(props) {
             return <View style={{flex: 1}} key={i}>
             <Text style={style.weaterText}>{daily.week}</Text>
                 <Ionicons
-                    name="ios-sunny"
+                    name={weatherIcon[daily.day.img]}
                     style={style.weaterIcons}></Ionicons>
                 <Text style={style.weaterText}>{daily.day.temphigh}℃</Text>
             </View>
@@ -61,7 +63,7 @@ export default function SwiperBox(props) {
         <View style={{flex: 1}} key={i}>
             <Text style={style.weaterText}>{daily.week}</Text>
                 <Ionicons
-                    name="ios-sunny"
+                    name={weatherIcon[daily.day.img]}
                     style={style.weaterIcons}></Ionicons>
                 <Text style={style.weaterText}>{daily.day.temphigh}℃</Text>
             </View>
