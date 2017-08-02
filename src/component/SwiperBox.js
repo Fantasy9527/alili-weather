@@ -17,8 +17,9 @@ var {height, width} = Dimensions.get("window");
 
 export default function SwiperBox() {
     return <Swiper
+                height = {300}
                 style={style.Swiper}
-                showsButtons={true}
+                showsButtons={false}
                  buttonWrapperStyle={style.buttonWrapperStyle} 
                  paginationStyle={{
                     top: 0, left: 0, right: null
