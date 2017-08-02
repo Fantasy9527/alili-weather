@@ -21,19 +21,21 @@ constructor(){
 
   componentWillMonunt(){
         let data;
-        fetch(
-          "https://way.jd.com/jisuapi/weather?city=杭州&citycode=101260301&appkey=4a35afd2f9f4642a39895948be231075"
-        )
+        fetch("https://way.jd.com/jisuapi/weather?city=杭州&citycode=101260301&appkey=4a35afd2f9f4642a39895948be231075")
           .then(res => res.json())
-          .then(res => {
+          .then(res => { 
             data = res;
+            alert(data)
             this.setState({
               temphigh: 1,
               templow: 2,
-        //   temphigh: data.result.result.daily[0].day.temphigh,
-        //   templow: data.result.result.daily[0].night.templow
-            });
-          });
+              //temphigh: data.result.result.daily[0].day.temphigh,
+              //templow: data.result.result.daily[0].night.templow
+            })
+          }).catch((error) => {
+            alert(error)
+        console.error(error);
+      });
   }
   render() {
     return <View style={{ flex: 1 }}>
@@ -46,7 +48,7 @@ constructor(){
           </View>
             <SwiperBox></SwiperBox>
         </ScrollView>
-        <TabButtonBox />
+        {/* <TabButtonBox /> */}
       </View>;
   }
 
